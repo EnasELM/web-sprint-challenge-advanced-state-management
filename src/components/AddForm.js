@@ -1,15 +1,17 @@
-import React, { useState } from 'react';
+
 import { connect } from 'react-redux';
-import { addSmurf,FETCH_ERROR } from '../actions';
+import { addSmurf,FETCH_ERROR } from '../actions';   
+import React, { useState } from 'react';
+
 const AddForm = (props) => {
-    // const [state, setState] = useState({
-    //     name:"",
-    //     position:"",
-    //     nickname:"",
-    //     description:""
-    // });
-    const [state, setState] = useState(props.smurf);
-    //remove when error state is added
+    const [state, setState] = useState({
+        name:"",
+        position:"",
+        nickname:"",
+        description:""
+    });
+   
+    const [errorMessage, setErrorMessage] = useState('')
     
 
     const handleChange = e => {
@@ -22,10 +24,9 @@ const AddForm = (props) => {
     const handleSubmit = e => {
         e.preventDefault();
         if (state.name === "" || state.position === "" || state.nickname === "") {
-            props.dispatch(FETCH_ERROR('make sure you add the name and all of information'));
-            
+            setErrorMessage('make sure you add the name and all of information');
         }
-       else{props.dispatch(addSmurf(props.smurf)); }     
+        else{props.dispatch(addSmurf(props.smurf)); }  
     }
 
     return(<section>
@@ -48,16 +49,17 @@ const AddForm = (props) => {
                 <textarea onChange={handleChange} value={state.description} name="description" id="description" />
             </div>
             {
-                props.error && <div data-testid="errorAlert" className="alert alert-danger" role="alert">Error: {props.error}</div>
+                errorMessage && <div data-testid="errorAlert" className="alert alert-danger" role="alert">Error: {errorMessage}</div>
             }
             <button>Submit Smurf</button>
         </form>
     </section>);
 }
+
 const mapStateToProps = state => {
     return {
-      smurf: [state.smurf],
-      error: ''
+        smurf:[],
+        error: ''
     };
   };
 export default connect(mapStateToProps) (AddForm);
