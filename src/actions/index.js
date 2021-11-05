@@ -23,7 +23,7 @@ axios.get(`http://localhost:3333/smurfs`)
 }
 
 export const FETCH_SMURFS= 'FETCH_SMURFS'
-export const fetchSmurfs = (smurfs)=> {
+export const fetchSmurfs = ()=> {
     return ({type:FETCH_SMURFS});
 }
 

@@ -13,7 +13,7 @@ export const initialState = {
           description: 'Papa is the practical village leader and the father figure of 100 or so young Smurfs. He is easily identified by his red Smurf hat, pants, and a shortly-trimmed white beard and moustache.'
         }
       ],
-      isFetching: false,
+      isLoading: false,
   error: ''
 }
 
@@ -23,21 +23,21 @@ const reducer = (state = initialState, action)=>{
           return({
             ...state,
             smurf : [],
-            isFetching:true,
+            isLoading:true,
             error:''
           });
         case(FETCH_SUCCESS):
           return({
             ...state,
             smurf : action.payload,
-            isFetching: false,
+            isLoading: false,
             error: ''
           });
         case(FETCH_ERROR):
           return({
             ...state,
             smurf :[],
-            isFetching: false,
+            isLoading: false,
             error: action.payload
           })
         default:

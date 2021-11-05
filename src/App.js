@@ -9,11 +9,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css";
 
 class App extends Component {
-  // constructor({ smurf, isFetching, error, dispatch }) {
-  //   super({ smurf, isFetching, error, dispatch });
-   
-  // }
- 
+  
+   componentDidMount(){
+    
+    this.props.dispatch(getSmurfs());
+   console.log(this.props.smurf)
+  }
   render() {
     
     return (
@@ -31,11 +32,11 @@ class App extends Component {
 const mapStateToProps = state => {
   return {
     smurf: state.smurf,
-    isFetching: state.isFetching,
+    isLoading: state.isLoading,
     error: state.error
   };
 };
-export default connect(mapStateToProps,{getSmurfs})(App);
+export default connect(mapStateToProps)(App);
 
 //Task List:
 //1. Connect the fetchSmurfs actions to the App component.
