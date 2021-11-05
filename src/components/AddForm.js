@@ -10,7 +10,7 @@ const AddForm = (props) => {
         nickname:"",
         description:""
     });
-   
+             //*******set the error when form is empty************// 
     const [errorMessage, setErrorMessage] = useState('')
     
 
@@ -26,6 +26,7 @@ const AddForm = (props) => {
         if (state.name === "" || state.position === "" || state.nickname === "") {
             setErrorMessage('make sure you add the name and all of information');
         }
+        //////////**call axios.post by addSmurf***////////////
         else{props.dispatch(addSmurf(props.smurf)); }  
     }
 
