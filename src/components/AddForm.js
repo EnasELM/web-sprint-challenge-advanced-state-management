@@ -25,7 +25,7 @@ const AddForm = (props) => {
             props.dispatch(FETCH_ERROR('make sure you add the name and all of information'));
             
         }
-        props.dispatch(addSmurf(props.smurf));    
+       else{props.dispatch(addSmurf(props.smurf)); }     
     }
 
     return(<section>

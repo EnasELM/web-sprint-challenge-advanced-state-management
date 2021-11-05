@@ -6,11 +6,11 @@ import thunk from 'redux-thunk';
 import reducer from "./reducers";
 import "./index.css";
 import App from "./App";
-
+             ////////**Connect application**///////
 const { worker } = require('./mocks/browser');
 worker.start();
 const store = createStore(reducer, applyMiddleware(thunk));
-console.log(store.getState)
+
 const rootElement = document.getElementById("root");
 
 ReactDOM.render(

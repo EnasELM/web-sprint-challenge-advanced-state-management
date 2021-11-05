@@ -4,36 +4,28 @@ import { FETCH_SMURFS, FETCH_SUCCESS, FETCH_ERROR } from './../actions';
 //and a string indicating a possible error message
 
 export const initialState = {
-    smurf  :[
-        {
-            id:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
-            name:'Poppa Smurf',
-            position:'Village Leader',
-            nickname: 'Pops',
-            description: 'Papa is the practical village leader and the father figure of 100 or so young Smurfs. He is easily identified by his red Smurf hat, pants, and a shortly-trimmed white beard and moustache.'
-          }
-      ],
+    smurf  :[],
       isLoading: false,
   error: ''
 }
 
 const reducer = (state = initialState, action)=>{
     switch (action.type) {
-        case(FETCH_SMURFS):
+        case(FETCH_SMURFS)://reducer case to accommodate the start of a smurf fetch
           return({
             ...state,
             smurf : [],
             isLoading:true,
             error:''
           });
-        case(FETCH_SUCCESS):
+        case(FETCH_SUCCESS)://reducer case to accommodate the successful smurf api fetch
           return({
             ...state,
-            smurf : [...state.smurf,action.payload],
+            smurf : [action.payload],
             isLoading: false,
             error: ''
           });
-        case(FETCH_ERROR):
+        case(FETCH_ERROR)://reducer cases to accommodate an error
           return({
             ...state,
             smurf :[],
