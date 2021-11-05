@@ -1,8 +1,48 @@
+import { FETCH_SMURFS, FETCH_SUCCESS, FETCH_ERROR } from './../actions';
+
+//initial state value has  smurfs's array a boolean indicating if  is loading
+//and a string indicating a possible error message
 
 export const initialState = {
+    smurf  :[
+        {
+          id:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
+          name:'Poppa Smurf',
+          position:'Village Leader',
+          nickname: 'Pops',
+          description: 'Papa is the practical village leader and the father figure of 100 or so young Smurfs. He is easily identified by his red Smurf hat, pants, and a shortly-trimmed white beard and moustache.'
+        }
+      ],
+      isFetching: false,
+  error: ''
 }
 
-const reducer = ()=>{
+const reducer = (state = initialState, action)=>{
+    switch (action.type) {
+        case(FETCH_SMURFS):
+          return({
+            ...state,
+            smurf : [],
+            isFetching:true,
+            error:''
+          });
+        case(FETCH_SUCCESS):
+          return({
+            ...state,
+            smurf : action.payload,
+            isFetching: false,
+            error: ''
+          });
+        case(FETCH_ERROR):
+          return({
+            ...state,
+            smurf :[],
+            isFetching: false,
+            error: action.payload
+          })
+        default:
+          return state;
+      }
 }
 
 //**************DO NOT EDIT ANY CODE BEYOND THIS POINT**************//
