@@ -13,7 +13,7 @@ export const getSmurfs =()=>{
 axios.get(`http://localhost:3333/smurfs`)
     .then(resp=> {
        dispatch(fetchSuccess(resp));
-       console.log(`${resp} resp`)
+       
     })
     .catch(err=> {
        dispatch(fetchError(err));
@@ -30,7 +30,9 @@ export const fetchSmurfs = ()=> {
 //saves the result of that axios call
 export const FETCH_SUCCESS= 'FETCH_SUCCESS'
 export const fetchSuccess = (smurfs)=> {
+    console.log(`${smurfs} sumerrrrrrrrrrrrrrrr`)
     return ({type:FETCH_SUCCESS,payload:smurfs});
+    
 }
 
 //hows an error if is there

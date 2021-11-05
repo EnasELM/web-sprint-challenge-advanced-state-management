@@ -10,6 +10,7 @@ import App from "./App";
 const { worker } = require('./mocks/browser');
 worker.start();
 const store = createStore(reducer, applyMiddleware(thunk));
+console.log(store.getState)
 const rootElement = document.getElementById("root");
 
 ReactDOM.render(
