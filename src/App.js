@@ -13,7 +13,7 @@ class App extends Component {
    componentDidMount(){
     
     this.props.dispatch(getSmurfs());
-   console.log(this.props.smurf)
+   
   }
   render() {
     

@@ -12,7 +12,7 @@ export const getSmurfs =()=>{
  //call axios to returns the list of all smurfs objects  
 axios.get(`http://localhost:3333/smurfs`)
     .then(resp=> {
-       dispatch(fetchSuccess(resp));
+       dispatch(fetchSuccess(resp.data));
        
     })
     .catch(err=> {
@@ -22,6 +22,22 @@ axios.get(`http://localhost:3333/smurfs`)
     }
 }
 
+export const addSmurf =(newSmurf)=>{
+    return (dispatch)=> {
+        dispatch(fetchSmurfs());
+
+ //call axios to returns the list of all smurfs objects  
+axios.post(`http://localhost:3333/smurfs`,newSmurf)
+    .then(resp=> {
+       dispatch(fetchSuccess([resp.data,...newSmurf]));
+       
+    })
+    .catch(err=> {
+       dispatch(fetchError(err));
+       console.log(`${err} err`)
+    });
+    }
+}
 export const FETCH_SMURFS= 'FETCH_SMURFS'
 export const fetchSmurfs = ()=> {
     return ({type:FETCH_SMURFS});
@@ -40,5 +56,4 @@ export const FETCH_ERROR = 'FETCH_ERROR'
 export const fetchError = (errMessage)=> {
     return ({type:FETCH_ERROR,payload:errMessage});
 }
-
 

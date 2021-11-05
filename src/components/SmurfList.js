@@ -11,15 +11,21 @@ import { connect } from 'react-redux';
     //     description: 'Papa is the practical village leader and the father figure of 100 or so young Smurfs. He is easily identified by his red Smurf hat, pants, and a shortly-trimmed white beard and moustache.'
     // }
 
+// Replace the static isLoading var with the state loading var.
+console.log('props is work all list')
+console.log(props.smurf)
     if (props.isLoading) {
         return <h1>Loading...</h1>;
     }
 
     return(<div className="listContainer">
-        
-        <Smurf smurf={props.smurf}/>
+               {/* a map return a Smurf component */}
+        {props.smurf.map(item=> <Smurf key={item.id} smurf={item} />)}
+           
+        {/* <Smurf smurf={props.smurf}/> */}
     </div>);
 }
+
 const mapStateToProps = state => {
     return {
         smurf: state.smurf,
@@ -27,6 +33,8 @@ const mapStateToProps = state => {
      
     };
   };
+
+//   Connect the smurfs
 export default connect(mapStateToProps)(SmurfList);
 
 //Task List:
