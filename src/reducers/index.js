@@ -1,7 +1,6 @@
 import { FETCH_SMURFS, FETCH_SUCCESS, FETCH_ERROR } from './../actions';
 
-//initial state value has  smurfs's array a boolean indicating if  is loading
-//and a string indicating a possible error message
+//////////**** reducer cases*****///////////
 
 export const initialState = {
     smurf  :[],
@@ -21,7 +20,7 @@ const reducer = (state = initialState, action)=>{
         case(FETCH_SUCCESS)://reducer case to accommodate the successful smurf api fetch
           return({
             ...state,
-            smurf : [action.payload],
+            smurf : action.payload,
             isLoading: false,
             error: ''
           });
